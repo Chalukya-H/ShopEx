@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/ShopEx/static/css/main.ef7d2bc8.chunk.css",
+    "main.js": "/ShopEx/static/js/main.999717a7.chunk.js",
+    "main.js.map": "/ShopEx/static/js/main.999717a7.chunk.js.map",
+    "runtime-main.js": "/ShopEx/static/js/runtime-main.5a5dc306.js",
+    "runtime-main.js.map": "/ShopEx/static/js/runtime-main.5a5dc306.js.map",
+    "static/css/2.829c9cb5.chunk.css": "/ShopEx/static/css/2.829c9cb5.chunk.css",
+    "static/js/2.be073c49.chunk.js": "/ShopEx/static/js/2.be073c49.chunk.js",
+    "static/js/2.be073c49.chunk.js.map": "/ShopEx/static/js/2.be073c49.chunk.js.map",
+    "index.html": "/ShopEx/index.html",
+    "precache-manifest.fa0d957ec19de94dd2bd77bbd2eff0cc.js": "/ShopEx/precache-manifest.fa0d957ec19de94dd2bd77bbd2eff0cc.js",
+    "service-worker.js": "/ShopEx/service-worker.js",
+    "static/css/2.829c9cb5.chunk.css.map": "/ShopEx/static/css/2.829c9cb5.chunk.css.map",
+    "static/css/main.ef7d2bc8.chunk.css.map": "/ShopEx/static/css/main.ef7d2bc8.chunk.css.map",
+    "static/js/2.be073c49.chunk.js.LICENSE.txt": "/ShopEx/static/js/2.be073c49.chunk.js.LICENSE.txt",
+    "static/media/download-11.jpg": "/ShopEx/static/media/download-11.0e3849b6.jpg",
+    "static/media/image1.jpg": "/ShopEx/static/media/image1.2ef8e484.jpg",
+    "static/media/image2.jpg": "/ShopEx/static/media/image2.e09ce4e7.jpg",
+    "static/media/image3.jpg": "/ShopEx/static/media/image3.d1d39096.jpg",
+    "static/media/image4.jpg": "/ShopEx/static/media/image4.2be7db46.jpg",
+    "static/media/image5.jpg": "/ShopEx/static/media/image5.54ce5ec0.jpg",
+    "static/media/image6.jpg": "/ShopEx/static/media/image6.22ddf9bf.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a5dc306.js",
+    "static/css/2.829c9cb5.chunk.css",
+    "static/js/2.be073c49.chunk.js",
+    "static/css/main.ef7d2bc8.chunk.css",
+    "static/js/main.999717a7.chunk.js"
+  ]
+}
