@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 const configDB = () =>{
-    mongoose.connect('mongodb://localhost:27017/shopex-db' ,{useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex:true })
+    mongoose.connect('mongodb://localhost:27017/shopex-db' ,{
+            useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex:true })
     .then( ()=>{
         console.log('Database connection sucess')
     })

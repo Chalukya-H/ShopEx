@@ -35,6 +35,20 @@ const userSchema  = new Schema ({
         minlength :6,
         maxlength:280
     },
+    mobile : {
+        type:String,
+        minlength :10,
+        maxlength:10
+    },
+
+    address :{
+        type:String
+    },
+
+    gender :{
+        type:String
+    },
+
     role : {
         type:String,
         default : 'customer'

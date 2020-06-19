@@ -24,21 +24,40 @@ class Cart extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="card mb-2" >
+                        <div className="row no-gutters">
+                            <div className="col-md-4">
+                                <img src={image5} className="card-img" alt="..."  style = {{width:'80%',height:'90%'}}/>
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                    <h5 className="card-title">Card title</h5>
+                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
  
                 </div>
-                <div className="col-4  mr-5" style ={{height:'100%',width:'150%'}}>
+                <div className="col-3  mr-auto ml-4" style ={{height:'100%',width:'150%'}}>
                     <div className="card">
                         <div className="card-header">
                             <h5>PRICE DETAILS</h5>
                         </div>
                         <div className="card-body">
-                            <h5 className="card-title">Price
+                            <h5 className="card-title">Price (2 items)
                                 <h5 className="card-title float-right">$20000</h5>
                             </h5> 
-                             
+                            <h5 className="card-title">TAX
+                                <h5 className="card-title float-right">$200</h5>
+                            </h5> 
                         </div>
                         <div class="card-footer">
-                            <h5>TOTAL PRICE</h5>
+                             
+                            <h5 className="card-title">TOTAL PRICE
+                                <h5 className="card-title float-right">$20000</h5>
+                            </h5> 
                         </div>
                     </div>
                     
