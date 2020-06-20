@@ -49,40 +49,38 @@ class TopMenu extends React.Component{
                         <ul className="navbar-nav  ml-auto" >
                             {
                                 localStorage.getItem('token') ? 
-                                    <div className ='navbar-nav '>
-                                        {/* <li className="nav-item active">
-                                            <Link to ='/account' className ='nav-link navbar-brand ' >Account </Link>
-                                        </li> */}
-                                            
-                                            {
-                                                 
-                                               this.state.role ==='Admin' ?
-                                                    
-                                                <div className="dropdown ml-2">
-                                                        <button type="button" className="btn btn-info  dropdown-toggle" data-toggle="dropdown" 
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            Account
-                                                        </button>
-                                                        <div className="dropdown-menu">
-                                                            <Link to ='/account' className ='dropdown-item' > Profile </Link>
-                                                            <Link to ='/orders' className ='dropdown-item' > Order Summary </Link>
-                                                            <Link to ='/items' className ='dropdown-item' > Product Summary </Link>
-                                                             
-                                                        </div>                      
-                                                    </div>
-                                                : 
+                                    <div className ='navbar-nav '>                                      
+                                        {                                                
+                                            this.state.role ==='Admin' ?                                                
+                                                <div className="dropdown ml-3 mr-2 ">
+                                                    <button type="button" className="btn btn-success  dropdown-toggle"
+                                                     data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false">
+                                                        Account
+                                                    </button>
+                                                    <div className="dropdown-menu">
+                                                        <Link to ='/account' className ='dropdown-item' > Profile </Link>
+                                                        <Link to ='/orders' className ='dropdown-item' > Order Summary </Link>
+                                                        <Link to ='/items' className ='dropdown-item' > Product Summary </Link>
+                                                            
+                                                    </div>  
+                                                                        
+                                                </div>
+                                            :                                             
                                                 <li className="nav-item active">
-                                                        <Link to ='/account' className ='nav-link navbar-brand ' >Account </Link>
-                                                    </li>
-                                            }
-
+                                                    <Link to ='/account' className ='nav-link navbar-brand ' >Account </Link>                                                    
+                                                </li>
+                                            
+                                        }
                                         <li className="nav-item active">
-                                            <Link to ='/cart' className ='nav-link navbar-brand fa fa-shopping-cart' >  </Link>
+                                            <Link to ='/cart' className ='nav-link navbar-brand fa fa-shopping-cart'
+                                             style ={{display: this.state.role ==='Admin' ? 'none' : ''}} >  </Link>
                                         </li>
+
                                         <li className="nav-item active">
                                             <Link to ='#' onClick ={this.handleLogout} 
                                                 className ='nav-link navbar-brand fa fa-sign-out' >      </Link>
                                         </li>
+                                       
                                 </div>
                                 :
                                 <div className ='navbar-nav'>

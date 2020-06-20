@@ -7,6 +7,7 @@ import Register from './components/home/register'
 import AllItemsShow from './components/items/itemsShow'
 import CustomerInfo from './components/customer/customerAccount'
 import Cart from './components/cart/carview'
+import OrderSummary from './components/orders/orderSummary'
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path ='/register' component ={Register} />
           <Route path ='/account' component ={CustomerInfo} />
           <Route path ='/cart' component ={Cart} />
+
+          <Route path ='/orders' component ={OrderSummary} />
       </Switch>
     </BrowserRouter>
    
