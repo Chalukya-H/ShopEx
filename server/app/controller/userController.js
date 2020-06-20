@@ -6,6 +6,15 @@ const userController = {}
 
 userController.register = (req,res) =>{
     const body = req.body
+
+    
+    User.findOne ({email:body.email})
+    .then( user =>{
+        if( user ) {
+            res.json({error:'Email already registered'}) 
+        }
+    })
+
     const user = new  User(body)
     bycryptjs.genSalt()
     .then (salt =>{

@@ -41,15 +41,15 @@ export const stratLogin = (userData,redirect,refresh) =>{
 
 }
 
-
 export const startRegister = (userData,redirect) =>{
 
     return(dispatch) =>{
         axios.post('/users/register',userData)
         .then( response =>{
-            if(response.data.hasOwnProperty('error') || response.data.hasOwnProperty('errors')){
-                console.log(response.data)
-                alert(response.data.message)
+            
+            if(response.data.hasOwnProperty('error') || response.data.hasOwnProperty('errors')){                 
+                alert(response.data.error)
+                redirect()
             }
             else {
                 alert('Registered Successfully')
@@ -85,7 +85,6 @@ export const startGetUser =() =>{
 export const editUser = (user) => {
     return {   type: 'EDIT_USER',   payload: user   }
 }
-
 
 export const EditUserInfo = (userData,id,refresh) =>{
     console.log('Edit',userData,id)

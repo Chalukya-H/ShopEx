@@ -16,13 +16,14 @@ function App() {
           <TopMenu/> 
         </div>
 
-    <Switch>
-        <Route path ='/' component = {AllItemsShow} exact ={true} />
-        <Route path ='/login' component = {Login} />
-        <Route path ='/register' component ={Register} />
-        <Route path ='/account' component ={CustomerInfo} />
-        <Route path ='/cart' component ={Cart} />
-    </Switch>
+      <Switch>
+          <Route path ='/' component = {AllItemsShow} exact ={true} />
+          <Route path ='/ShopEx' component = {AllItemsShow} exact ={true} />
+          <Route path ='/login' component = {Login} />
+          <Route path ='/register' component ={Register} />
+          <Route path ='/account' component ={CustomerInfo} />
+          <Route path ='/cart' component ={Cart} />
+      </Switch>
     </BrowserRouter>
    
   );

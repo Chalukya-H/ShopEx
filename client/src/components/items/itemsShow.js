@@ -2,10 +2,9 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import image1 from '../../media/imageHeader/image1.jpg'
 import image2 from '../../media/imageHeader/image2.jpg'
-import image3 from '../../media/imageHeader/image3.jpg'
-import image4 from '../../media/imageHeader/image4.jpg'
-import image5 from '../../media/imageHeader/image5.jpg'
+import image3 from '../../media/imageHeader/image3.jpg' 
 import ItemSlides from './itemSlides'
+
 class  AllItemsShow extends React.Component {
 
  
@@ -13,7 +12,7 @@ class  AllItemsShow extends React.Component {
         return( 
             <div>
                 <ItemSlides/> 
-                
+
                 <div className ='container-fluid mt-3'>
                     <h3> Mobiles </h3>
                     <div className ='row'>
