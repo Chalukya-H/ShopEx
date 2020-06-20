@@ -6,7 +6,17 @@ const usersReducer = (state = userInitState ,action) => {
         case 'SET_USER': {              
             return [].concat(action.payload)
         } 
-    
+        
+        case 'EDIT_USER' :{
+            return state.map (user =>{
+                if(user._id === action.payload._id) {
+                    return Object.assign({},user,action.payload)
+                } else {
+                    return Object.assign({},user)
+                }
+            })
+        }
+
         default: {  
             return [].concat(state)
         }          

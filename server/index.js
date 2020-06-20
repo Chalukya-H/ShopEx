@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const configDB = require('../server/config/database')
-const router = require('../server/config/routes')
+const configDB = require('./config/database')
+const router = require('./config/router')
 const port =3030
 
 app.use(express.json())

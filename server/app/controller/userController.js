@@ -65,8 +65,22 @@ userController.login = (req,res) => {
 }
 
 
-usersController.account = (req,res) =>{
+userController.account = (req,res) =>{
     res.json(req.user)
 }
 
-module.exports = usersController
+
+userController.update = (req,res) =>{
+    const id = req.params.id    
+    const body = req.body
+    User.findOneAndUpdate({ _id:id }  , body ,{ new: true, runValidators: true }   )
+    .then((user) => {        
+        res.json(user)
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+
+}
+
+module.exports = userController
