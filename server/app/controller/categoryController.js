@@ -37,4 +37,16 @@ categoryController.list =(req,res) =>{
     })
 }
 
+categoryController.delete = (req,res) =>{
+    const id = req.params.id
+    Category.findByIdAndDelete({_id:id})
+    .then( category =>{
+        res.json(category)
+    })
+
+    .catch(err =>{
+        res.json(err)
+    })
+}
+
 module.exports = categoryController

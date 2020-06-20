@@ -92,4 +92,14 @@ userController.update = (req,res) =>{
 
 }
 
+userController.list = (req,res) =>{
+    User.find()
+    .then(users =>{
+        res.json(users)
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+}
+
 module.exports = userController
