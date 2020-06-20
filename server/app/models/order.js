@@ -16,7 +16,8 @@ const orderSchema = new Schema ({
     } ,
     customerID : {
         type : Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'User',
+        required:true
     },
     image : {
         type : String

@@ -11,6 +11,7 @@ orderController.create = (req,res) =>{
         }
         else {
             const order =  new Order(body)
+            order.customerID = req.user._id
             order.save()
             .then(order =>{
                 res.json(order)
