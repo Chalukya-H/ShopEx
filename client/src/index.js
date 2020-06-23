@@ -5,6 +5,7 @@ import App from './App';
 import {Provider} from 'react-redux' 
 import configureStore from './store/configureStore'
 import {startGetUser} from './actions/userAction'
+import {getCategories} from './actions/categoryAction'
 import  'bootstrap/dist/css/bootstrap.css'
 
 const store = configureStore()
@@ -15,6 +16,7 @@ store.subscribe( () =>{
 // handle page reload
 if(localStorage.getItem('token')) {
   store.dispatch(startGetUser())
+  store.dispatch(getCategories())
 }
 
 const ele = (

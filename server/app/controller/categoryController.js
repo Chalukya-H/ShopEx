@@ -3,10 +3,10 @@ const categoryController ={}
 
 categoryController.create = (req,res) =>{
     const body = req.body
-    Category.findOne({cType:body.cType})
+    Category.findOne({mainType:body.mainType})
     .then( category => {
         if(category){
-            res.json({error:`Category ${category.cType} alredy exists`})
+            res.json({error:`Category ${category.mainType} alredy exists`})
         }
         else {
             const category =  new Category(body)

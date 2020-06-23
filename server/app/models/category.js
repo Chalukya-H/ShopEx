@@ -2,13 +2,14 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const categorySchema = new Schema ({
-    cType :{
+    mainType :{
         type: String,
         required:true
     },
     subType :[{
-        type: String,
-        required:true
+        name:{
+            type: String        
+        }
     }],
     createdAt: {
         type: Date,

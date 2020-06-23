@@ -8,7 +8,7 @@ import AllItemsShow from './components/items/itemsShow'
 import CustomerInfo from './components/customer/customerAccount'
 import Cart from './components/cart/carview'
 import OrderSummary from './components/orders/orderSummary'
-
+import AddProduct from './components/items/addItems'
 
 function App() {
   return (
@@ -19,13 +19,14 @@ function App() {
 
       <Switch>
           <Route path ='/' component = {AllItemsShow} exact ={true} />
-          <Route path ='/ShopEx' component = {AllItemsShow} exact ={true} />
+          {/* <Route path ='/ShopEx' component = {AllItemsShow} exact ={true} /> */}
           <Route path ='/login' component = {Login} />
           <Route path ='/register' component ={Register} />
           <Route path ='/account' component ={CustomerInfo} />
           <Route path ='/cart' component ={Cart} />
 
           <Route path ='/orders' component ={OrderSummary} />
+          <Route path ='/products/add' component ={AddProduct} />
       </Switch>
     </BrowserRouter>
    

@@ -33,7 +33,7 @@ class TopMenu extends React.Component{
             <div>
               <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand" href="/"><img src = {logo} /></a>
+                    <a className="navbar-brand" href="/"> <img src = {logo} alt ='' /></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -59,6 +59,7 @@ class TopMenu extends React.Component{
                                                     </button>
                                                     <div className="dropdown-menu">
                                                         <Link to ='/account' className ='dropdown-item' > Profile </Link>
+                                                        <Link to ='/products/add' className ='dropdown-item' > Add Product </Link>
                                                         <Link to ='/orders' className ='dropdown-item' > Order Summary </Link>
                                                         <Link to ='/items' className ='dropdown-item' > Product Summary </Link>
                                                             

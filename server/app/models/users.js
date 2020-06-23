@@ -29,12 +29,13 @@ const userSchema  = new Schema ({
 
         }
     },
-    password : {
+    password :{
         type : String,
         required:true,
-        minlength :[6,'Password must contain mininum 6 char'],
+        minlength : [6,'Password must contain mininum 6 char'],
         maxlength:280
     },
+
     mobile : {
         type:String,
         minlength :10,
