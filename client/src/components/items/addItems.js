@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-// import {addProduct}  from '../../actions/productAction'
+import {connect} from 'react-redux' 
 import {getCategories} from '../../actions/categoryAction'
+import { addProduct } from '../../actions/productAction' 
 //  import filepath from '../../media'
 
 class AddProduct extends React.Component{
@@ -16,16 +16,16 @@ class AddProduct extends React.Component{
             quantity:'',
             mainImage:'',
             cartImage:'',
-            reviewMainImage:'',
-            reviewcartImage:''
-             
+            reviewmainImage:'',
+            reviewcartImage:''             
         }
     }
 
     componentDidMount() {
         if (this.props.categories.length === 0) {
             this.props.dispatch(getCategories())
-        } 
+            
+        }  
     }
 
     handleChange =(e) =>{
@@ -35,29 +35,50 @@ class AddProduct extends React.Component{
     }
 
     handleImage =(e) =>{
-        const filepath = e.target.files[0]
-        console.log(e.target.filepath,'Images')
+        const filepath = e.target.files[0]        
         this.setState({
             [e.target.name]:filepath
         })
-
+         
+        //Image Review
+         const events = [e.target.id]          
         const reader = new FileReader()
-        reader.addEventListener("load",()=>{
-            console.log(reader.result)
-            this.setState({reviewMainImage:reader.result})
+        reader.addEventListener("load",( )=>{                    
+            this.setState({ [events]:reader.result})
         },false)
         reader.readAsDataURL(filepath)
     }
 
+    handleSubmit = (e) =>{
+        e.preventDefault()
 
-    render(){
-         console.log(this.state.mainImage.filepath,'aaddd')
+        const formData = new FormData()
+        formData.append('name',this.state.name)
+        formData.append('description',this.state.description)
+        formData.append('price',this.state.price)
+        formData.append('quantity',this.state.quantity)
+        formData.append('categoryID',this.state.category)
+        formData.append('subCategoryID',this.state.subcategory)
+        formData.append('mainImage',this.state.mainImage)
+        formData.append('cartImage',this.state.cartImage)
+         
+        const redirect = () =>{
+            return this.props.history.push('/products/list')             
+        }
+
+
+        this.props.dispatch(addProduct(formData,redirect))
+      
+    }
+
+    render(){ 
+
         return(
-            <div className ='container'>
+            <div className ='container-fluid ml-3'>
                 <h3> Adding Products </h3>
                 <div className='row '>
-                    <div className ='col-6 border'>
-                        <form className = 'form' encType="multipart/form-data" >                              
+                    <div className ='col-5 border'>
+                        <form   encType="multipart/form-data" onSubmit ={this.handleSubmit} >                              
                             <div className = 'form-group'>
                                 <label htmlFor='name' >Product Name :</label>
                                 <input type= 'text'id='name' required={true} name ='name' className ='form-control' 
@@ -138,9 +159,9 @@ class AddProduct extends React.Component{
                                         <span className="input-group-text fa fa-file-image-o" id="mainImage"></span>
                                     </div>
                                     <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="mainImage" name = 'mainImage'
+                                        <input type="file" className="custom-file-input" id="reviewmainImage" name = 'mainImage'
                                            onChange ={this.handleImage} aria-describedby="mainImage"  />
-                                        <label className="custom-file-label" htmlFor="mainImage">
+                                        <label className="custom-file-label" htmlFor="reviewmainImage">
                                             { this.state.mainImage ===''  ? 'Choose Main image' : this.state.mainImage.name }</label>
                                     </div>
                                 </div>
@@ -152,9 +173,9 @@ class AddProduct extends React.Component{
                                         <span className="input-group-text fa fa-file-image-o" id="inputGroupFileAddon01"></span>
                                     </div>
                                     <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="cartImage"  name ='cartImage'
+                                        <input type="file" className="custom-file-input" id="reviewcartImage"  name ='cartImage'
                                             aria-describedby="cartImage" onChange ={this.handleImage}  />
-                                        <label className="custom-file-label" htmlFor="inputGroupFile01">
+                                        <label className="custom-file-label" htmlFor="reviewcartImage">
                                         { this.state.cartImage ===''  ? 'Choose Cart image' : this.state.cartImage.name } </label>
                                     </div>
                                 </div>
@@ -163,17 +184,28 @@ class AddProduct extends React.Component{
                             
                             <div className = 'form-group'> 
                                 <input type= 'submit' id='submit' name ='submit' className ='btn btn-success w-25' 
-                                    value ='Add' onClick ={this.handleSubmit}/>
+                                    value ='Add'  />
                             </div>
-                        </form> 
-
-                        {
-                            this.state.mainImage ? <div className ='col-5'>
-                                    <img src = {this.state.reviewMainImage} alt=''/> 
-                                </div>
-                                :''
-                        }
+                        </form>  
                     </div>
+                        {
+                            this.state.mainImage   ? 
+                                <div className ='col-4  ml-4'>
+                                    <h5>Main Image Review</h5>
+                                    <img src = {this.state.reviewmainImage} alt=''/> 
+                                    <h5>Cart Image Review</h5>
+                                    <img src = {this.state.reviewcartImage} alt=''/> 
+                                </div>
+                                :'' 
+                        }
+                        {
+                            this.state.cartImage ? 
+                            <div className ='col-2  ml-1'>
+                                <h5>Cart Image Review</h5>
+                                <img src = {this.state.reviewcartImage} alt=''/> 
+                            </div>
+                            :'' 
+                        }
                 </div>
 
             </div>

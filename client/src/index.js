@@ -6,6 +6,7 @@ import {Provider} from 'react-redux'
 import configureStore from './store/configureStore'
 import {startGetUser} from './actions/userAction'
 import {getCategories} from './actions/categoryAction'
+import {getProducts} from './actions/productAction'
 import  'bootstrap/dist/css/bootstrap.css'
 
 const store = configureStore()
@@ -17,6 +18,7 @@ store.subscribe( () =>{
 if(localStorage.getItem('token')) {
   store.dispatch(startGetUser())
   store.dispatch(getCategories())
+  store.dispatch(getProducts())
 }
 
 const ele = (

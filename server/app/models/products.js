@@ -29,6 +29,9 @@ const productSchema = new Schema ({
         ref : 'Category',
         required :true
     } ,
+    subCategoryID :{
+        type:Schema.Types.ObjectID
+    },
     createdAt: {
         type: Date,
         default: Date.now

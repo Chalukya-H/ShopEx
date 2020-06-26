@@ -9,6 +9,9 @@ import CustomerInfo from './components/customer/customerAccount'
 import Cart from './components/cart/carview'
 import OrderSummary from './components/orders/orderSummary'
 import AddProduct from './components/items/addItems'
+import ShowSingleProduct from './components/items/singleItemShow'
+import ProductsSummary from './components/items/productList'
+import ProductShowByCategory from './components/items/productsDisplay'
 
 function App() {
   return (
@@ -19,14 +22,17 @@ function App() {
 
       <Switch>
           <Route path ='/' component = {AllItemsShow} exact ={true} />
-          {/* <Route path ='/ShopEx' component = {AllItemsShow} exact ={true} /> */}
+          <Route path ='/ShopEx' component = {AllItemsShow} exact ={true} />
           <Route path ='/login' component = {Login} />
           <Route path ='/register' component ={Register} />
           <Route path ='/account' component ={CustomerInfo} />
           <Route path ='/cart' component ={Cart} />
 
           <Route path ='/orders' component ={OrderSummary} />
-          <Route path ='/products/add' component ={AddProduct} />
+          <Route path ='/products' component ={ShowSingleProduct} exact ={true}/>
+          <Route path ='/products/list' component ={ProductsSummary} exact ={true} />
+          <Route path ='/products/add' component ={AddProduct} exact ={true} />          
+          <Route path ='/products/:id' component ={ProductShowByCategory} />
       </Switch>
     </BrowserRouter>
    

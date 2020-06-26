@@ -23,12 +23,16 @@ router.get('/orders',authUser, orderController.list)
 router.post('/orders',authUser, orderController.create)
 
 //Product Router
-router.post('/products/add',upload.single('file'),productController.create)
+router.get('/products',productController.list)
+router.post('/products/topfew',productController.topList)
+router.post('/products',upload.any('filename'),productController.create)
+router.get('/products_query/:id',productController.findByCategory)
 
 
 //Get Data based on ID
 router.put('/users/:id', authUser,userController.update)
 router.delete('/category/:id', categoryController.delete)
+
 
 
 module.exports = router

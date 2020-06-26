@@ -6,6 +6,9 @@ const productsReducer = (state = productInitState ,action) => {
         case 'ADD_PRODUCT': {              
             return [].concat(action.payload)
         } 
+        case 'UPDATE_PRODUCT': {              
+            return [].concat(action.payload)
+        } 
          
         default: {  
             return [].concat(state)

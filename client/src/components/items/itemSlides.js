@@ -4,8 +4,7 @@ import image1 from '../../media/imageHeader/image1.jpg'
 import image2 from '../../media/imageHeader/image2.jpg'
 import image3 from '../../media/imageHeader/image3.jpg'
 import image4 from '../../media/imageHeader/image4.jpg'
-import image5 from '../../media/imageHeader/image5.jpg'
-import image6 from '../../media/imageHeader/image6.jpg'
+import image5 from '../../media/imageHeader/image5.jpg' 
 
 function ItemSlides(props) {
     return(

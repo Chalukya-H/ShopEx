@@ -60,9 +60,9 @@ class TopMenu extends React.Component{
                                                     <div className="dropdown-menu">
                                                         <Link to ='/account' className ='dropdown-item' > Profile </Link>
                                                         <Link to ='/products/add' className ='dropdown-item' > Add Product </Link>
-                                                        <Link to ='/orders' className ='dropdown-item' > Order Summary </Link>
-                                                        <Link to ='/items' className ='dropdown-item' > Product Summary </Link>
-                                                            
+                                                        <Link to ='/orders' className ='dropdown-item' > Orders Summary </Link>
+                                                        <Link to ='/products' className ='dropdown-item' >Product Show </Link>
+                                                        <Link to ='/products/list' className ='dropdown-item' > Products Summary </Link>                                                            
                                                     </div>  
                                                                         
                                                 </div>
