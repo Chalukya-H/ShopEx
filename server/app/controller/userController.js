@@ -5,9 +5,7 @@ const userController = {}
 
 
 userController.register = (req,res) =>{
-    const body = req.body
-
-    
+    const body = req.body 
     User.findOne ({email:body.email})
     .then( user =>{
         if( user ) {
@@ -42,14 +40,12 @@ userController.register = (req,res) =>{
 
 userController.login = (req,res) => {
     const body = req.body
-    // console.log(body.password)
+   
     User.findOne ({email:body.email})
     .then( user =>{        
         if( !user ) {
             res.json({error:'invalid Email or password'}) 
-        }
-       
-
+        } 
         bycryptjs.compare(body.password,user.password)
         .then( found => {
             if(found){

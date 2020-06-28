@@ -7,7 +7,7 @@ const userController = require('../app/controller/userController')
 const categoryController = require('../app/controller/categoryController')
 const orderController = require('../app/controller/orderController')
 const productController = require('../app/controller/productController')
-  
+const cartController = require('../app/controller/cartController')
 //User Router
 router.post('/users/login',userController.login)
 router.post('/users/register', userController.register)
@@ -17,6 +17,7 @@ router.get('/users/list', userController.list)
 //Category Router
 router.get('/categories', categoryController.list)
 router.post('/categories', categoryController.create)
+router.put('/categories/update',categoryController.update)
 
 //Order Router
 router.get('/orders',authUser, orderController.list)
@@ -26,8 +27,13 @@ router.post('/orders',authUser, orderController.create)
 router.get('/products',productController.list)
 router.post('/products/topfew',productController.topList)
 router.post('/products',upload.any('filename'),productController.create)
-router.get('/products_query/:id',productController.findByCategory)
+router.get('/products/query/:id',productController.findByCategory)
+router.get('/products/:id',productController.findProductByID)
 
+//Cart router
+router.get('/cart',authUser,cartController.list)
+router.post('/cart',authUser,cartController.create)
+router.delete('/cart/:id',authUser,cartController.delete)
 
 //Get Data based on ID
 router.put('/users/:id', authUser,userController.update)

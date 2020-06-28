@@ -11,7 +11,8 @@ import  'bootstrap/dist/css/bootstrap.css'
 
 const store = configureStore()
 store.subscribe( () =>{
-  console.log(store.getState())
+  // console.log(store.getState())
+  store.getState()
 })
  
 // handle page reload

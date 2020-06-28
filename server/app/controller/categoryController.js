@@ -29,12 +29,27 @@ categoryController.list =(req,res) =>{
 
     Category.find()
     .then( category =>{
+        res.json(category.reverse())
+    })
+
+    .catch(err =>{
+        res.json(err)
+    })
+}
+
+categoryController.update =(req,res) =>{
+    const id = req.body._id
+    const body = req.body 
+    Category.findByIdAndUpdate({_id:id}, {$push:{subType:{$each:[body.subType]} }},{ new: true, runValidators: true })
+    .then( category =>{
         res.json(category)
     })
 
     .catch(err =>{
         res.json(err)
     })
+   
+    
 }
 
 categoryController.delete = (req,res) =>{

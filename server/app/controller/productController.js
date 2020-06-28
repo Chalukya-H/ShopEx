@@ -3,8 +3,7 @@ const productController ={}
 
 productController.create = (req,res) =>{
     const body = req.body 
-    const product = new Product(body)
-    console.log(body.description.split('\n').length,'action')
+    const product = new Product(body) 
     product.mainImage = req.files[0].destination + req.files[0].filename
     product.cartImage = req.files[1].destination + req.files[1].filename
 
@@ -46,10 +45,20 @@ productController.findByCategory = (req,res) =>{
     })
 
 }
+productController.findProductByID = (req,res) =>{
+    const id =  req.params.id    
+   Product.findById({_id:id})
+   .then(product =>{
+       res.json(product)
+   })
+   .catch(err =>{
+       res.json(err)
+   })
+
+}
 
 productController.topList = (req,res) =>{
-    const body =  req.body
-    
+    const body =  req.body    
    Product.find(body).limit(4)
    .then(product =>{
        res.json(product)

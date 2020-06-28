@@ -3,7 +3,8 @@ const productInitState = []
 
 const productsReducer = (state = productInitState ,action) => {
     switch (action.type) {
-        case 'ADD_PRODUCT': {              
+        case 'ADD_PRODUCT': {    
+                       
             return [].concat(action.payload)
         } 
         case 'UPDATE_PRODUCT': {              

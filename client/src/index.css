@@ -12,3 +12,7 @@ code {
     monospace;
 }
  
+
+ul.a {
+  list-style-type: circle;
+}

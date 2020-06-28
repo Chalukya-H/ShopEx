@@ -1,72 +1,168 @@
 import React from 'react'
-import image5 from '../../media/imageHeader/image5.jpg'
+import NumberFormat from 'react-number-format' 
+import {Link} from 'react-router-dom'
+ import {getProducttoCart,deleteProducttoCart} from '../../actions/cartAction'
+import { connect } from 'react-redux'
+
 class Cart extends React.Component {
 
+    constructor(){
+        super()
+        this.state={             
+            path : window.location.origin   
+        }
+    }
+    componentDidMount =()=>{
+        this.props.dispatch(getProducttoCart()) 
+        const refersh =  setInterval( () =>{  
+            if(this.props.cartData.length ) {             
+                clearInterval(refersh)                 
+            }
+        } , 1000)
+    }
+
+    handleCartQuantity = (e) =>{
+        const valTYpe = e.target.name 
+        if(valTYpe === 'less' && e.target.id === '1') {           
+            alert ('Item quantity can not be less than 1')
+        } else if( e.target.id ===3){
+            alert('Upto 3 quantity only purchase at a time ')
+        }
+
+        
+    }
+
+    handleRemove = (e) =>{
+        const id = e.target.value
+        this.props.dispatch(deleteProducttoCart(id))
+
+    }
+
     render() {
+        
         return(
-            <div className ='container-fluid m-3'>
-                <h4> My Cart</h4>               
+            <div className ='container-fluid m-3 '>
+                 <h4 style ={{ visibility : this.props.cartData.length ? 'visible' : 'hidden'}}  > My Cart</h4> 
+                {
+                   this.props.cartData.length ? 
+                   <div className="row justify-content-between">                        
+                        <div className="col-6"> 
+                        {
+                            this.props.cartData.map( (cart,i) =>{
+                                return (
+                                    <div className="card mb-2"  key ={i+1}>
+                                        <div className="row no-gutters">
+                                            <div className="col-md-1 mt-3">
+                                                <img src={`${this.state.path}/${cart.image}`} className="card-img" alt="No Image" 
+                                                /> 
+                                            </div>
+                                            
+                                            <div className="col-md-10">
+                                                <div className="card-body">
+                                                    <div className='row'>
+                                                        <div className ='col'>  
+                                                            <h5 className="card-title">{cart.name}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <h5 className="card-text text-left mt-3">
+                                                            <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" 
+                                                                className="card-title text-left"
+                                                                displayType = 'text' prefix={'₹'} value={cart.price }/>
+                                                        </h5> 
+                                                    </div>
+                                                    <div className ='row mt-3'>
+                                                        <div className ='col-4'>
+                                                            <input type ='submit' className ='card-text border-white rounded-circle' name = 'less' 
+                                                                onClick = {this.handleCartQuantity} id = {cart.quantity} value = '-' />
+                                                                     
+                                                            <input type ='text' disabled value = {cart.quantity} 
+                                                                className ='text-center w-25'/>
+                                                             <input type ='submit' className ='card-text border-white rounded-circle'
+                                                              name = 'add'  onClick = {this.handleCartQuantity} id = {cart.quantity} value = '+' />
+                                                               
+                                                        </div>  
+                                                        <div className ='col-7'>
+                                                            <button className="card-text float-right btn btn-danger mt-3" 
+                                                                value ={cart._id} onClick ={this.handleRemove} > Remove</button>   
+                                                        </div>    
+                                                         
+                                                                                                       
+                                                    </div>  
+                                                    
+                                                </div>
+                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                            
+                        } 
+                    </div>
+                  
+                   <div className="col-3  mr-auto ml-5" style ={{height:'100%',width:'150%'}}>
+                       <div className="card">
+                           <div className="card-header">
+                               <h5>PRICE DETAILS</h5>
+                           </div>
+                           <div className="card-body">
+                               <div className ='row justify-content-between'>
+                                   <h5 className="card-title float-left">{`Price (${this.props.cartData.length} items)`} </h5> 
+                                   <h5 className="card-title float-right">
+                                    <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
+                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                    </h5>
+                               </div>
+                              <div className ='row justify-content-between'>
+                                   <h5 className="card-title float-left">TAX  </h5> 
+                                   <h5 className="card-title float-right">
+                                    <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
+                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                    </h5>
+                              </div>
+                               
+                           </div>
+                           <div className="card-footer">                                
+                               <h5 className="card-title float-left">TOTAL PRICE </h5> 
+                               <h5 className="card-title float-right">
+                                    <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
+                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                    </h5>
+                           </div>
+                           <input type= 'submit' id='submit' name ='submit' className ='btn btn-danger ' 
+                                       value ='PLACE ORDER'  />
+                       </div>
+                       
+                   </div>
+                   
+               </div>
                 
-            
-            <div className="row justify-content-between">
-                <div className="col-7">
-                    <div className="card mb-2" >
-                        <div className="row no-gutters">
-                            <div className="col-md-4">
-                                <img src={image5} className="card-img" alt="..."  style = {{width:'80%',height:'90%'}}/>
+                   : 
+                   <div className = 'container border mx-auto' style ={{height:'200px'}}> 
+                    <h4> My Cart</h4>                                       
+                       <div className="row justify-content-md-center mt-5">
+                            <div className="col-11 offset-md-9">
+                                <h5> Your cart is empty! </h5>
                             </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
+                         
+                        </div>
+                        <div className="row justify-content-md-center mt-5">
+                            <div className="col-11 offset-md-9">
+                               <Link to = '/' className ='btn btn-primary'> Shop More..</Link>
                             </div>
-                        </div>
-                    </div>
-                    <div className="card mb-2" >
-                        <div className="row no-gutters">
-                            <div className="col-md-4">
-                                <img src={image5} className="card-img" alt="..."  style = {{width:'80%',height:'90%'}}/>
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
- 
-                </div>
-                <div className="col-3  mr-auto ml-4" style ={{height:'100%',width:'150%'}}>
-                    <div className="card">
-                        <div className="card-header">
-                            <h5>PRICE DETAILS</h5>
-                        </div>
-                        <div className="card-body">
-                            <h5 className="card-title">Price (2 items)
-                                <h5 className="card-title float-right">$20000</h5>
-                            </h5> 
-                            <h5 className="card-title">TAX
-                                <h5 className="card-title float-right">$200</h5>
-                            </h5> 
-                        </div>
-                        <div class="card-footer">
-                             
-                            <h5 className="card-title">TOTAL PRICE
-                                <h5 className="card-title float-right">$20000</h5>
-                            </h5> 
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-                 
+                         </div>   
+                   </div>     
+                }
+               
             </div>
         )
     }
 }
 
-export default Cart
+const mapStateTOProps = (state) =>{
+    return{
+        cartData:state.cartData
+    }
+}
+export default connect(mapStateTOProps)(Cart)

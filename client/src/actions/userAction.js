@@ -1,19 +1,31 @@
-import axios from 'axios'  
+import axios from 'axios'   
+import swal from 'sweetalert'
 
 export const setUserInfo = (user) =>{
     return {type: 'SET_USER' ,  payload:user}
 }
 
 export const stratLogin = (userData,redirect,refresh) =>{
-    console.log(userData,'LoginAction')
+   
     return(dispatch) => {
         axios.post('/users/login',userData)
         .then(response => {
             if(response.data.hasOwnProperty('error')){                
-                alert (response.data.error)
+                
+                swal({
+                    title: response.data.error,                     
+                    icon: "error" ,
+                    button :'OK'                   
+                  })
              } else {
                  localStorage.setItem('token',response.data.token)
-                 alert('Login SuccessFull !')                  
+                 swal({
+                    title: 'Login Successfull !',                    
+                    icon: "success",
+                    button :'OK' 
+                    
+                  })
+                                
                  console.log('Token - ',localStorage.getItem('token'))
 
                  axios.get('users/account',{headers :{

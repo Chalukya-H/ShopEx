@@ -5,6 +5,7 @@ export const addProductinfo= (product) => {
 }
 
 
+
 export const addProduct = (productInfo,redirect)=>{
  
     return(dispatch) =>{
@@ -54,7 +55,7 @@ export const getTopProducts = (productInfo)=>{
         return(dispatch) =>{
             axios.post('/products/topfew',productInfo)
             .then(response =>{
-                
+                 
                 dispatch(addProductinfo(response.data))
                  
             })
@@ -67,7 +68,7 @@ export const getTopProducts = (productInfo)=>{
 
     export const getProductsbyCategory = (id)=>{    
         return(dispatch) =>{
-            axios.get(`/products_query/${id}`, {
+            axios.get(`/products/query/${id}`, {
                 headers : { 
                     'Content-Type' :'multipart/form-data'
                 }
@@ -75,6 +76,24 @@ export const getTopProducts = (productInfo)=>{
             .then(response =>{                
                 dispatch(addProductinfo(response.data))
                
+            })
+            .catch( err =>{
+                console.log(err)
+            })
+        }
+    }
+
+    
+    export const getProductsbyID = (id)=>{    
+        return(dispatch) =>{
+            axios.get(`/products/${id}`, {
+                headers : { 
+                    'Content-Type' :'multipart/form-data'
+                }
+            })
+            .then(response =>{                
+                dispatch(addProductinfo(response.data))
+                 
             })
             .catch( err =>{
                 console.log(err)

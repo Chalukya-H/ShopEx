@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import logo from '../../media/download-11.jpg'
+// import logo from '../../media/download-11.jpg'
+import logo from '../../media/Logo-1.PNG'
 import CategoryMenu from './categoryMenu'
 import {startGetUser} from '../../actions/userAction'
 import {connect} from 'react-redux'
@@ -12,6 +13,7 @@ class TopMenu extends React.Component{
             role : ''
         }
     }
+
     componentDidMount =()=>{
         this.props.dispatch(startGetUser()) 
         const refersh =  setInterval( () =>{  
@@ -33,20 +35,20 @@ class TopMenu extends React.Component{
             <div>
               <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand" href="/"> <img src = {logo} alt ='' /></a>
+                    <a className="navbar-brand" href="/"> <img src = {logo} alt ='' style ={{height:'80px'}}/></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
     
                     <div className="collapse navbar-collapse " id="navbarSupportedContent">     
-                        <div className="input-group mt-2">
-                            <input className="form-control w-25" type="text" placeholder="Search" aria-label="Search" />
+                        <div className="input-group mt-2 w-75">
+                            <input className="form-control " type="text" placeholder="Search" aria-label="Search" />
                             <div className="input-group-append">
                             <button className="btn btn-md btn-outline-warning " type="submit">Search</button>
                             </div>
                         </div>
     
-                        <ul className="navbar-nav  ml-auto" >
+                        <ul className="navbar-nav  ml-3" >
                             {
                                 localStorage.getItem('token') ? 
                                     <div className ='navbar-nav '>                                      
@@ -61,7 +63,8 @@ class TopMenu extends React.Component{
                                                         <Link to ='/account' className ='dropdown-item' > Profile </Link>
                                                         <Link to ='/products/add' className ='dropdown-item' > Add Product </Link>
                                                         <Link to ='/orders' className ='dropdown-item' > Orders Summary </Link>
-                                                        <Link to ='/products' className ='dropdown-item' >Product Show </Link>
+                                                        <Link to ='/categories/list' className ='dropdown-item' > Categories List </Link>
+                                                        <Link to ='/categories/update' className ='dropdown-item' >Add/Update Category </Link>
                                                         <Link to ='/products/list' className ='dropdown-item' > Products Summary </Link>                                                            
                                                     </div>  
                                                                         
