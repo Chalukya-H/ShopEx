@@ -18,6 +18,10 @@ const cartSchema = new Schema ({
         type : Schema.Types.ObjectId,
         ref : 'User'
     },
+    productID : {
+        type : Schema.Types.ObjectId,
+        ref : 'Product'
+    },
     image : {
         type : String
     },

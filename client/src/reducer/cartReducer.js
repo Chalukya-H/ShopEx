@@ -7,7 +7,16 @@ const cartReducer = (state = cartInitState ,action) => {
             return [].concat(action.payload)
         } 
 
-       
+        case 'EDIT_CART' :{
+            return state.map (cart =>{
+                if(cart._id === action.payload._id) {
+                    return Object.assign({},cart,action.payload)
+                } else {
+                    return Object.assign({},cart)
+                }
+            })
+        }
+
          
         default: {  
             return [].concat(state)

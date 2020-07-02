@@ -31,7 +31,8 @@ class ShowSingleProduct extends React.Component{
             name : this.state.products.name,
             price :this.state.products.price,
             quantity: this.state.quantity,
-            image : this.state.products.cartImage
+            image : this.state.products.cartImage,
+            productID:this.state.products._id
         }
         
         const redirect = () =>{

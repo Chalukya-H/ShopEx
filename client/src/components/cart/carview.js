@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format' 
 import {Link} from 'react-router-dom'
- import {getProducttoCart,deleteProducttoCart} from '../../actions/cartAction'
+ import {getProducttoCart,deleteProducttoCart,updateCartQuantity} from '../../actions/cartAction'
 import { connect } from 'react-redux'
 
 class Cart extends React.Component {
@@ -21,15 +21,39 @@ class Cart extends React.Component {
         } , 1000)
     }
 
-    handleCartQuantity = (e) =>{
+    handleCartQuantity = (e , cart) =>{
         const valTYpe = e.target.name 
-        if(valTYpe === 'less' && e.target.id === '1') {           
+
+        if(valTYpe === 'less' && cart.quantity === 1 ) {           
             alert ('Item quantity can not be less than 1')
-        } else if( e.target.id ===3){
+        } else if( cart.quantity >= 3 && valTYpe === 'add' ){
             alert('Upto 3 quantity only purchase at a time ')
         }
 
-        
+        if(valTYpe === 'less' &&  cart.quantity > 1 ) {
+            const formData = {
+                id : cart.productID,
+                cartQuantity : -1,
+                cartid : cart._id,
+                productQuantity : 1,
+                currentQuantity : cart.quantity,
+                auth : localStorage.getItem('token')
+            }
+            this.props.dispatch(updateCartQuantity(formData))   
+
+        } else if(valTYpe === 'add' &&  cart.quantity >=1 && cart.quantity < 3 ){
+            const formData = {
+                id : cart.productID,
+                cartQuantity : 1,
+                cartid : cart._id,
+                productQuantity : -1,
+                currentQuantity : cart.quantity,
+                auth : localStorage.getItem('token')
+            }
+            this.props.dispatch(updateCartQuantity(formData))  
+        }
+
+
     }
 
     handleRemove = (e) =>{
@@ -74,12 +98,12 @@ class Cart extends React.Component {
                                                     <div className ='row mt-3'>
                                                         <div className ='col-4'>
                                                             <input type ='submit' className ='card-text border-white rounded-circle' name = 'less' 
-                                                                onClick = {this.handleCartQuantity} id = {cart.quantity} value = '-' />
+                                                                onClick = { (e) => {this.handleCartQuantity (e,cart)} }  value = '-' />
                                                                      
                                                             <input type ='text' disabled value = {cart.quantity} 
                                                                 className ='text-center w-25'/>
                                                              <input type ='submit' className ='card-text border-white rounded-circle'
-                                                              name = 'add'  onClick = {this.handleCartQuantity} id = {cart.quantity} value = '+' />
+                                                              name = 'add'  onClick = { (e) => {this.handleCartQuantity (e,cart)} }  value = '+' />
                                                                
                                                         </div>  
                                                         <div className ='col-7'>

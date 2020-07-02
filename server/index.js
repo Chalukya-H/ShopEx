@@ -10,10 +10,10 @@ configDB()
 
 app.use('/',router)
  
-app.use(function(req,res,next){
-    console.log(`${req.method} - ${req.url} - ${new Date()} - ${JSON.stringify(req.body)}`)
-    next()
-})
+// app.use(function(req,res,next){
+//     console.log(`${req.method} - ${req.url} - ${new Date()} - ${JSON.stringify(req.body)}`)
+//     next()
+// })
 
 //File Upload
 app.use("/upload", express.static("upload"));

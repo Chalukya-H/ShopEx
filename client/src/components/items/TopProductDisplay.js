@@ -17,7 +17,6 @@ class  TopProductsShow extends React.Component {
     
     componentDidMount = ()=>{
         this.props.dispatch(getCategories()) 
-
         const refersh =  setInterval( () =>{  
             if( this.props.categories.length  ) {   
                     this.props.categories.map(category =>{
@@ -52,7 +51,7 @@ class  TopProductsShow extends React.Component {
     }
 
     render() {
-       
+        console.log('Product Type', this.props.productType)
         return( 
 
             <ProductDisplay products = {this.state.products} type = {this.props.productType} productID = {this.state.productID} />
