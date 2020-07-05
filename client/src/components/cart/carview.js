@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format' 
 import {Link} from 'react-router-dom'
- import {getProducttoCart,deleteProducttoCart,updateCartQuantity} from '../../actions/cartAction'
+ import {getProducttoCart,deleteProducttoCart,updateCartQuantity,addproductstoOrder} from '../../actions/cartAction'
 import { connect } from 'react-redux'
 
 class Cart extends React.Component {
@@ -9,14 +9,27 @@ class Cart extends React.Component {
     constructor(){
         super()
         this.state={             
-            path : window.location.origin   
+            path : window.location.origin ,
+            price :0 ,
+            tax : 0  
+
         }
     }
     componentDidMount =()=>{
         this.props.dispatch(getProducttoCart()) 
         const refersh =  setInterval( () =>{  
             if(this.props.cartData.length ) {             
-                clearInterval(refersh)                 
+                clearInterval(refersh)   
+                let price = 0
+                this.props.cartData.map( cart =>{
+                    price += cart.price * cart.quantity
+                    return price  
+                })   
+                
+                if (price > 0 ){
+                    const tax = price * 1 /100
+                    this.setState({price,tax})
+                }
             }
         } , 1000)
     }
@@ -30,6 +43,10 @@ class Cart extends React.Component {
             alert('Upto 3 quantity only purchase at a time ')
         }
 
+        const refresh =() =>{
+            return window.location.reload()
+        }
+
         if(valTYpe === 'less' &&  cart.quantity > 1 ) {
             const formData = {
                 id : cart.productID,
@@ -39,7 +56,9 @@ class Cart extends React.Component {
                 currentQuantity : cart.quantity,
                 auth : localStorage.getItem('token')
             }
-            this.props.dispatch(updateCartQuantity(formData))   
+            
+           
+            this.props.dispatch(updateCartQuantity(formData,refresh))   
 
         } else if(valTYpe === 'add' &&  cart.quantity >=1 && cart.quantity < 3 ){
             const formData = {
@@ -50,7 +69,7 @@ class Cart extends React.Component {
                 currentQuantity : cart.quantity,
                 auth : localStorage.getItem('token')
             }
-            this.props.dispatch(updateCartQuantity(formData))  
+            this.props.dispatch(updateCartQuantity(formData,refresh))  
         }
 
 
@@ -58,8 +77,20 @@ class Cart extends React.Component {
 
     handleRemove = (e) =>{
         const id = e.target.value
-        this.props.dispatch(deleteProducttoCart(id))
+        
+        const refresh =() =>{
+            return window.location.reload()
+        }
+        this.props.dispatch(deleteProducttoCart(id ,refresh))
 
+    }
+
+    handleOrder =() =>{
+        const refresh =() =>{
+            return window.location.reload()
+        }
+        const orders = this.props.cartData
+        this.props.dispatch(addproductstoOrder(orders,refresh))
     }
 
     render() {
@@ -135,14 +166,14 @@ class Cart extends React.Component {
                                    <h5 className="card-title float-left">{`Price (${this.props.cartData.length} items)`} </h5> 
                                    <h5 className="card-title float-right">
                                     <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
-                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                        displayType = 'text' prefix={'₹'} value={this.state.price}/>
                                     </h5>
                                </div>
                               <div className ='row justify-content-between'>
                                    <h5 className="card-title float-left">TAX  </h5> 
                                    <h5 className="card-title float-right">
                                     <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
-                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                        displayType = 'text' prefix={'₹'} value={ this.state.tax}/>
                                     </h5>
                               </div>
                                
@@ -151,11 +182,11 @@ class Cart extends React.Component {
                                <h5 className="card-title float-left">TOTAL PRICE </h5> 
                                <h5 className="card-title float-right">
                                     <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
-                                        displayType = 'text' prefix={'₹'} value={123456789}/>
+                                        displayType = 'text' prefix={'₹'} value={ this.state.price + this.state.tax}/>
                                     </h5>
                            </div>
                            <input type= 'submit' id='submit' name ='submit' className ='btn btn-danger ' 
-                                       value ='PLACE ORDER'  />
+                                       value ='PLACE ORDER'  onClick = {this.handleOrder} />
                        </div>
                        
                    </div>

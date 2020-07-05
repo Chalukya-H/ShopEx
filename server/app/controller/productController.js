@@ -22,14 +22,25 @@ productController.create = (req,res) =>{
 
 
 productController.list = (req,res) =>{ 
-    Product.find({quantity : { $gt: 1 }})
-    .then(product =>{
-        res.json(product)
-    })
-    .catch(err =>{
-        res.json(err)
-    })
-
+    if(req.user.role === 'Admin'){
+        Product.find()
+        .then(product =>{
+            res.json(product)
+        })
+        .catch(err =>{
+            res.json(err)
+        })
+    
+    } else {
+        Product.find({quantity : { $gt: 1 }})
+        .then(product =>{
+            res.json(product)
+        })
+        .catch(err =>{
+            res.json(err)
+        })
+    }     
+    
 }
 
  
@@ -59,7 +70,7 @@ productController.findProductByID = (req,res) =>{
 
 productController.topList = (req,res) =>{
     const body =  req.body    
-   Product.find({body,quantity : { $gt: 1 }}).limit(4)
+   Product.find({quantity : { $gt: 1 }}).limit(8)
    .then(product =>{
        res.json(product)
    })
@@ -99,6 +110,20 @@ productController.updateQuantity =(req,res) =>{
          }
     })
 
+}
+
+productController.filterByName =(req,res) =>{
+    const textChar  =  req.params.text
+     
+    Product.find( {name:{  $regex: textChar } }  )
+        .then(product =>{
+            console.log(product)
+            res.json(product)
+        })
+        .catch(err =>{
+            console.log(err)
+            res.json(err)
+        })
 }
 
 

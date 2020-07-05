@@ -9,9 +9,10 @@ const authUser = (req,res,next) =>{
 
         try {
             tokenData = jwt.verify(token,key)
+            
             User.findById(tokenData._id)
             .then(user => {
-                req.user = user
+                req.user = user                  
                 next()
             })
             .catch(err =>{

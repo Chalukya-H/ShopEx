@@ -63,7 +63,7 @@ export const UpdateCartInfo = (cart) =>{
 }
 
 
-export const updateCartQuantity = (formData) =>{
+export const updateCartQuantity = (formData,refresh) =>{
     return(dispatch) =>{
       
         axios.put('products/quantity/update',formData)
@@ -79,6 +79,7 @@ export const updateCartQuantity = (formData) =>{
                     })
                  .then( response =>{
                      dispatch(UpdateCartInfo(response.data))
+                     refresh()
                  })   
 
                  .catch(err=> {
@@ -94,7 +95,7 @@ export const updateCartQuantity = (formData) =>{
 }
 
 
-export const deleteProducttoCart = (id)=>{
+export const deleteProducttoCart = (id,refresh)=>{
     
     return(dispatch) => {         
         axios.delete(`/cart/${id}`, {  headers : {
@@ -106,6 +107,7 @@ export const deleteProducttoCart = (id)=>{
                   alert (response.data)
               } else {
                 dispatch(getProducttoCart())
+                refresh()
                 const product = {
                     productQuantity : response.data.quantity,
                     cartQuantity : -1,
@@ -132,4 +134,27 @@ export const deleteProducttoCart = (id)=>{
              console.log(err)
          })         
     }
+}
+
+export const addproductstoOrder = (formData , refresh) =>{
+    return(dispatch) => {         
+        axios.delete(`cart/delete/all`, {  headers : {
+            'auth' : localStorage.getItem('token') 
+             }
+            })
+         .then(response => {  
+              if( response.data.hasOwnProperty('error')){
+                  alert (response.data)
+              } else {
+                 console.log(formData)
+                dispatch(getProducttoCart())
+                // refresh()
+                
+              }
+            })
+            
+        .catch(err =>{
+            console.log(err)
+        })
+    }        
 }

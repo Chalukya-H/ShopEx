@@ -9,52 +9,30 @@ import {connect} from 'react-redux'
 class  TopProductsShow extends React.Component {
     constructor(){
         super()
-        this.state = {
-            productID :'',
+        this.state = {             
             products : []
         }
     }
     
     componentDidMount = ()=>{
-        this.props.dispatch(getCategories()) 
-        const refersh =  setInterval( () =>{  
-            if( this.props.categories.length  ) {   
-                    this.props.categories.map(category =>{
-                        category.subType.map(type =>{ 
-                             
-                            return type.name === this.props.productType ? (
-                                 
-                                this.getProducts( {"categoryID":category._id,"subCategoryID":type._id }  )                           
-                            )
-                         :''
-                    })
-                }) 
-            }
- 
-        },1000)
- 
-    }
- 
-
-    getProducts =(productId) =>{         
-        this.props.dispatch(getTopProducts(productId)) 
+        this.props.dispatch(getTopProducts()) 
         const refersh =  setInterval( () =>{ 
             if(this.props.products.length ) {             
-                clearInterval(refersh) 
-                const productID = this.props.products[0].subCategoryID
-                this.setState({productID}) 
-                this.setState ({products : this.props.products , productID})
+                clearInterval(refersh)                  
+                this.setState ({products : this.props.products })
 
             }
         },1000)
-        
+ 
     }
+ 
+ 
 
     render() {
-        console.log('Product Type', this.props.productType)
+        console.log('Product Type', this.props.products)
         return( 
 
-            <ProductDisplay products = {this.state.products} type = {this.props.productType} productID = {this.state.productID} />
+            <ProductDisplay products = {this.state.products}   />
         )
     }
 }
@@ -68,12 +46,12 @@ function ProductDisplay(props) {
               <div className ='container-fluid mt-3 ml-2'>
                    
                     <div className="row justify-content-between">
-                        <div className="col-1">
-                            <h3> { props.type} </h3> 
+                        <div className="col-5">
+                            <h3> Top New products </h3> 
                         </div>
-                        <div className="col-2">
+                        {/* <div className="col-2">
                             <u><Link to={`/products/query/${props.productID}`}> View More...</Link></u>
-                        </div>
+                        </div> */}
                     </div>
                   
                    
@@ -81,7 +59,8 @@ function ProductDisplay(props) {
                     {
                          props.products.map((product,i) =>{                                
                             return (
-                                <Link className = 'col-md-3' to={`/products/${product._id}`} style ={{color:'black',textDecoration:'none'}} key={i+1}>                                             
+                                <Link className = 'col-md-3 mt-2' to={`/products/${product._id}`} 
+                                    style ={{color:'black',textDecoration:'none'}} key={i+1}>                                             
                                     <Card className = 'border-none'  style ={{height:'100%'}} >
                                         <Card.Img variant="top" src= {product.mainImage}
                                             style ={{height:'200px',width:'50%',marginLeft: 'auto',  marginRight: 'auto'}}/>

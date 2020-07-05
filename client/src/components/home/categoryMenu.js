@@ -21,10 +21,10 @@ class CategoryMenu extends React.Component {
                                 <div className="dropdown-menu">
                                     {
                                         category.subType.map( (sub,i) =>{
-                                            return  <a className="dropdown-item" href={`/products/query/${sub._id}`} key ={i+1}> {sub.name} </a>
+                                            return  <a className="dropdown-item" href={`/products/query/${sub._id}`} key ={i+1}> 
+                                                    {sub.name} </a>
                                         })
-                                    }
-                                    
+                                    } 
                                 </div>                      
                             </div> 
                         })

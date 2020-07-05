@@ -24,17 +24,19 @@ router.get('/orders',authUser, orderController.list)
 router.post('/orders',authUser, orderController.create)
 
 //Product Router
-router.get('/products',productController.list)
-router.post('/products/topfew',productController.topList)
+router.get('/products',authUser,productController.list)
+router.post('/products/topnew',productController.topList)
 router.post('/products',upload.any('filename'),productController.create)
 router.put('/products/quantity/update',productController.updateQuantity)
 router.get('/products/query/:id',productController.findByCategory)
 router.get('/products/:id',productController.findProductByID)
+router.get('/products/search/:text',productController.filterByName)
 
 //Cart router
 router.get('/cart',authUser,cartController.list)
 router.post('/cart',authUser,cartController.create)
 router.put('/cart/qunatity/update',authUser,cartController.updateQuantity)
+router.delete('/cart/delete/all',authUser,cartController.deleteAll)
 
 //Get Data based on ID
 router.put('/users/:id', authUser,userController.update)

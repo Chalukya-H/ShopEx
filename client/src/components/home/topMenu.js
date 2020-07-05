@@ -4,13 +4,15 @@ import {Link} from 'react-router-dom'
 import logo from '../../media/Logo-1.PNG'
 import CategoryMenu from './categoryMenu'
 import {startGetUser} from '../../actions/userAction'
+import {getProductsbyQuery} from '../../actions/productAction'
 import {connect} from 'react-redux'
 
 class TopMenu extends React.Component{
     constructor(){
         super()
         this.state ={
-            role : ''
+            role : '',
+            searchText:''
         }
     }
 
@@ -30,6 +32,12 @@ class TopMenu extends React.Component{
          window.location.href ='/'
       }
 
+      handleSearch =(e) =>{
+          this.setState ({searchText : e.target.value})
+      }
+
+     
+
     render() {
         return (
             <div>
@@ -42,9 +50,11 @@ class TopMenu extends React.Component{
     
                     <div className="collapse navbar-collapse " id="navbarSupportedContent">     
                         <div className="input-group mt-2 w-75">
-                            <input className="form-control " type="text" placeholder="Search" aria-label="Search" />
+                            <input className="form-control " type="text" placeholder="Search" aria-label="Search" value ={this.state.searchText}
+                                onChange = {this.handleSearch}/>
                             <div className="input-group-append">
-                            <button className="btn btn-md btn-outline-warning " type="submit">Search</button>
+                            <Link to = {`/search/q=${this.state.searchText}`} className="btn btn-md btn-outline-warning "  >
+                                    Search</Link>
                             </div>
                         </div>
     

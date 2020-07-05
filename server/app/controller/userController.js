@@ -51,7 +51,8 @@ userController.login = (req,res) => {
             if(found){
                 const tokenData =  {
                     _id : user._id,                   
-                    email:user.email
+                    email:user.email,
+                    role:user.role
                 }
                 
                 const token = jwt.sign(tokenData,'chalu123')

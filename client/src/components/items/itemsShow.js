@@ -11,11 +11,9 @@ class  AllItemsShow extends React.Component {
             <div>
                 <ItemSlides/> 
                 <div>
-                    <TopProductsShow productType ={"Mobile"} />
+                    <TopProductsShow  />
                 </div>
-                <div>
-                <TopProductsShow productType ={"Laptops"}  />
-                </div>
+                 
                
             </div>
                

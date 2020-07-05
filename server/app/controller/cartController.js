@@ -72,4 +72,18 @@ cartController.delete = (req,res) =>{
     })
 }
 
+
+cartController.deleteAll = (req,res) =>{
+       
+    Cart.remove({ customerID : req.user._id} )
+    .then( cart =>{
+        console.log(cart)
+        res.json(cart)
+    })
+
+    .catch(err =>{
+        res.json(err)
+    })
+}
+
 module.exports = cartController
