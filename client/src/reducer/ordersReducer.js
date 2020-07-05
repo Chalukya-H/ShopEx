@@ -6,9 +6,10 @@ const orderReducer = (state = orderInitState ,action) => {
         case 'SET_ORDERS': {              
             return [].concat(action.payload)
         } 
+        case 'CREATE_ORDER': {              
+            return [].concat(action.payload)
+        }   
         
-        
-
         default: {  
             return [].concat(state)
         }          

@@ -136,7 +136,13 @@ export const deleteProducttoCart = (id,refresh)=>{
     }
 }
 
-export const addproductstoOrder = (formData , refresh) =>{
+
+
+export const addOrderInfo = (order) =>{
+    return {type: 'CREATE_ORDER' ,  payload:order}
+}
+
+export const addProductstoOrder = (formData , refresh) =>{
     return(dispatch) => {         
         axios.delete(`cart/delete/all`, {  headers : {
             'auth' : localStorage.getItem('token') 
@@ -146,9 +152,26 @@ export const addproductstoOrder = (formData , refresh) =>{
               if( response.data.hasOwnProperty('error')){
                   alert (response.data)
               } else {
-                 console.log(formData)
+                 
                 dispatch(getProducttoCart())
-                // refresh()
+                refresh()
+
+                axios.post('/orders',formData,{  headers : {
+                    'auth' : localStorage.getItem('token') 
+                     }
+                    })
+                
+                    .then(response =>{
+                        if( response.data.hasOwnProperty('error')){
+                            alert (response.data)
+                        } else {
+                             dispatch ( addOrderInfo(response.data) )
+                        }
+
+                    })
+                    .catch(err =>{
+                        console.log(err)
+                    })
                 
               }
             })

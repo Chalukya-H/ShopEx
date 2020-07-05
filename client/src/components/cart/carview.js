@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format' 
 import {Link} from 'react-router-dom'
- import {getProducttoCart,deleteProducttoCart,updateCartQuantity,addproductstoOrder} from '../../actions/cartAction'
+ import {getProducttoCart,deleteProducttoCart,updateCartQuantity,addProductstoOrder} from '../../actions/cartAction'
 import { connect } from 'react-redux'
 
 class Cart extends React.Component {
@@ -89,8 +89,16 @@ class Cart extends React.Component {
         const refresh =() =>{
             return window.location.reload()
         }
-        const orders = this.props.cartData
-        this.props.dispatch(addproductstoOrder(orders,refresh))
+        const orders = this.props.cartData.map(cart =>{
+            return {
+                name:  cart.name,
+                price : cart.price,
+                quantity:cart.quantity,
+                image: cart.image
+            }
+        })
+        console.log(orders)
+        this.props.dispatch(addProductstoOrder(orders,refresh))
     }
 
     render() {

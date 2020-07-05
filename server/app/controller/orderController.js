@@ -3,26 +3,40 @@ const orderController ={}
 
 orderController.create = (req,res) =>{
     const body = req.body
-    Order.findOne({name:body.name})
+    console.log('order body',body)
+    // Order.findOne({name:body.name})
 
-    .then( order => {
-        if(order){
-            res.json({error:`Order ${order.name} alredy exists`})
-        }
-        else {
-            const order =  new Order(body)
-            order.customerID = req.user._id
-            order.save()
-            .then(order =>{
-                res.json(order)
-            })
-            .catch(err =>{
-                res.json(err)
-            })
-        }
-    })
+    // .then( order => {
+    //     if(order){
+    //         res.json({error:`Order ${order.name} alredy exists`})
+    //     }
+    //     else {
+            // const order =  new Order(body)
+            // order.customerID = req.user._id
+            // order.save()
+            // .then(order =>{
+            //     res.json(order)
+            // })
+            // .catch(err =>{
+            //     res.json(err)
+            // })
+        // }
+    // })
    
+    // .catch(err =>{
+    //     res.json(err)
+    // })
+
+
+    const order =  new Order(body)
+    order.customerID = req.user._id
+    order.save()
+    .then(order =>{
+        console.log(order,'Response')
+        res.json(order)
+    })
     .catch(err =>{
+        console.log(err,'error')
         res.json(err)
     })
 }

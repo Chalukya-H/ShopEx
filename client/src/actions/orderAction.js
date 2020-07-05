@@ -5,7 +5,7 @@ export const setOrderSummary = (orders) =>{
 }
 export const getOrderSummary =()=>{
     return(dispatch) => {
-        axios.get('/order' , {  headers : {
+        axios.get('/orders' , {  headers : {
             'auth' : localStorage.getItem('token') 
              }
         })

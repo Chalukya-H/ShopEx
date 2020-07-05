@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const orderSchema = new Schema ({
+    
     name :{
         type : String,
         required:true
@@ -32,9 +33,9 @@ const orderSchema = new Schema ({
     },
     deliveredAt :{
         type: Date,
-        default: Date.now 
+        default: new Date(+new Date() + 7*24*60*60*1000)
     }
-
+     
 })
 
 
