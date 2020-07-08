@@ -15,6 +15,8 @@ import ProductShowByCategory from './components/items/productsDisplay'
 import CategoriesSummary from './components/categories/cartegoriesList'
 import CategoryUpdate from './components/categories/categoriesUpdate'
 import ProductSeachbyName from './components/items/productsBySearch'
+import UpdateProduct from './components/items/updateProducts'
+import OrderCreate from './components/orders/orderCreate'
 
 function App() {
   return (
@@ -32,13 +34,16 @@ function App() {
           <Route path ='/cart' component ={Cart} exact ={true}/>
 
           <Route path ='/orders' component ={OrderSummary} exact ={true}/>
+          <Route path ='/orders/add' component ={OrderCreate} exact ={true}/>
           <Route path ='/categories/list' component ={CategoriesSummary} exact ={true}/>
           <Route path ='/categories/update' component ={CategoryUpdate} exact ={true}/>
           <Route path ='/products/list' component ={ProductsSummary} exact ={true} />
           <Route path ='/products/add' component ={AddProduct} exact ={true} />  
           <Route path ='/search/:text' component ={ProductSeachbyName} exact ={true}/>        
-          <Route path ='/products/query/:id' component ={ProductShowByCategory} exact ={true}/>          
+          <Route path ='/products/query/:id' component ={ProductShowByCategory} exact ={true}/>  
+          <Route path ='/products/update/:id' component ={UpdateProduct} exact ={true}/>        
           <Route path ='/products/:id' component ={ShowSingleProduct} exact ={true}/>
+          
           
       </Switch>
     </BrowserRouter>

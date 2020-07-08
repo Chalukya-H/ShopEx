@@ -8,6 +8,7 @@ import {startGetUser} from './actions/userAction'
 import {getCategories} from './actions/categoryAction'
 import {getProducts} from './actions/productAction'
 import  'bootstrap/dist/css/bootstrap.css'
+import Footer from '../src/components/home/footer'
 
 const store = configureStore()
 store.subscribe( () =>{
@@ -25,6 +26,7 @@ if(localStorage.getItem('token')) {
 const ele = (
   <Provider store ={store}>
       <App/>
+      <Footer/>
   </Provider>
 )
 

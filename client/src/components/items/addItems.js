@@ -193,8 +193,7 @@ class AddProduct extends React.Component{
                                 <div className ='col-4  ml-4'>
                                     <h5>Main Image Review</h5>
                                     <img src = {this.state.reviewmainImage} alt=''/> 
-                                    <h5>Cart Image Review</h5>
-                                    <img src = {this.state.reviewcartImage} alt=''/> 
+                                    
                                 </div>
                                 :'' 
                         }

@@ -85,21 +85,7 @@ class Cart extends React.Component {
 
     }
 
-    handleOrder =() =>{
-        const refresh =() =>{
-            return window.location.reload()
-        }
-        const orders = this.props.cartData.map(cart =>{
-            return {
-                name:  cart.name,
-                price : cart.price,
-                quantity:cart.quantity,
-                image: cart.image
-            }
-        })
-        console.log(orders)
-        this.props.dispatch(addProductstoOrder(orders,refresh))
-    }
+    
 
     render() {
         
@@ -193,8 +179,9 @@ class Cart extends React.Component {
                                         displayType = 'text' prefix={'₹'} value={ this.state.price + this.state.tax}/>
                                     </h5>
                            </div>
-                           <input type= 'submit' id='submit' name ='submit' className ='btn btn-danger ' 
-                                       value ='PLACE ORDER'  onClick = {this.handleOrder} />
+                           {/* <input type= 'submit' id='submit' name ='submit' className ='btn btn-danger ' 
+                                       value ='PLACE ORDER'  onClick = {this.handleOrder} /> */}
+                            <Link to ='/orders/add' id='submit' name ='submit' className ='btn btn-danger ' > PLACE ORDER </Link>
                        </div>
                        
                    </div>
@@ -225,7 +212,8 @@ class Cart extends React.Component {
 
 const mapStateTOProps = (state) =>{
     return{
-        cartData:state.cartData
+        cartData:state.cartData,
+        users : state.users
     }
 }
 export default connect(mapStateTOProps)(Cart)

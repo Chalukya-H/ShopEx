@@ -5,6 +5,7 @@ import logo from '../../media/Logo-1.PNG'
 import CategoryMenu from './categoryMenu'
 import {startGetUser} from '../../actions/userAction'
 import {getProductsbyQuery} from '../../actions/productAction'
+import Footer from './footer'
 import {connect} from 'react-redux'
 
 class TopMenu extends React.Component{
@@ -110,10 +111,11 @@ class TopMenu extends React.Component{
                         </ul> 
                     </div>
                  </nav>
-                </div>
+               </div>
               
                 <CategoryMenu/>
                
+              
             </div>
           
         )

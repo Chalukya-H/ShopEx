@@ -39,7 +39,8 @@ class ProductsSummary extends React.Component {
                             <th scope="col">Price</th>
                             <th scope="col">Category</th>  
                             <th scope="col">Sub Category</th>    
-                            <th scope="col">Stock Avilable</th>                             
+                            <th scope="col">Stock Avilable</th>   
+                            <th scope="col">Update</th>                           
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +66,9 @@ class ProductsSummary extends React.Component {
                                                     })
                                                 })
                                             }</td>
-                                        <td>{product.quantity}</td>                                         
+                                        <td>{product.quantity}</td> 
+                                        <td>  <Link to = { `/products/update/${product._id}`} className ='btn btn-info btn-sm'> UPDATE 
+                                            </Link> </td>                                           
                                     </tr>
                                 )
                             })

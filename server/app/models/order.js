@@ -23,6 +23,16 @@ const orderSchema = new Schema ({
     image : {
         type : String
     },
+    address:{
+        type:String,
+        required:true
+    },
+    contactNum : {
+        type :Number,
+        required:true,
+        minlength :10,
+        maxlength:13
+    },
     status :{
         type : String,
         default : 'Ordered'

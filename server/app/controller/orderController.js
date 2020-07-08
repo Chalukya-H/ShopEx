@@ -28,12 +28,14 @@ orderController.create = (req,res) =>{
     // })
 
 
-    const order =  new Order(body)
-    order.customerID = req.user._id
-    order.save()
+     
+    Order.insertMany(body)   
+    // order.customerID = req.user._id
+     
+    // order.save()
     .then(order =>{
         console.log(order,'Response')
-        res.json(order)
+        res.json(order )
     })
     .catch(err =>{
         console.log(err,'error')
