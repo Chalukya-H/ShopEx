@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'  
-import { getProductsbyID } from '../../actions/productAction' 
+import { updateProduct ,getProductsbyID} from '../../actions/productAction' 
 
 class UpdateProduct extends React.Component{
     constructor(){
@@ -19,11 +19,9 @@ class UpdateProduct extends React.Component{
         }
     }
 
-    componentDidMount() {
-        if (this.props.products.length === 0) {                 
-            this.props.dispatch(getProductsbyID( this.props.match.params.id ))              
-        }  
+    componentDidMount() { 
 
+        this.props.dispatch(getProductsbyID( this.props.match.params.id ))     
         const refersh =  setInterval( () =>{  
             if(this.props.products.length ) {             
                 clearInterval(refersh)                  
@@ -66,30 +64,28 @@ class UpdateProduct extends React.Component{
     handleSubmit = (e) =>{
         e.preventDefault()
 
-        const formData = new FormData()
-        formData.append('name',this.state.name)
-        formData.append('description',this.state.description)
-        formData.append('price',this.state.price)
-        formData.append('quantity',this.state.quantity)
-        formData.append('categoryID',this.state.category)
-        formData.append('subCategoryID',this.state.subcategory)
-        formData.append('mainImage',this.state.mainImage)
-        formData.append('cartImage',this.state.cartImage)
+        const formData = {
+            'name':this.state.name,
+            'description': this.state.description,
+            'price':this.state.price,
+            'quantity':this.state.quantity,
+            'categoryID':this.state.category,
+            'subCategoryID':this.state.subcategory 
+        }
          
         const redirect = () =>{
             return this.props.history.push('/products/list')             
         }
 
 
-        // this.props.dispatch(addProduct(formData,redirect))
+        this.props.dispatch(updateProduct(formData,this.props.match.params.id,redirect))
       
     }
 
-    render(){ 
-        console.log(this.props.match.params.id ,this.props.products)
+    render(){  
         return( 
             <div className ='container-fluid ml-3'>
-                <h3> Adding Products </h3>
+                <h3> Update Product </h3>
                 <div className='row '>
                     <div className ='col-5 border'>
                         <form   encType="multipart/form-data" onSubmit ={this.handleSubmit} >                              
@@ -165,40 +161,11 @@ class UpdateProduct extends React.Component{
                                 <input type= 'text'id='quantity' required={true} name ='quantity' className ='form-control' 
                                     placeholder ='Enter the Product quantity' value ={this.state.quantity} onChange ={this.handleChange}  />
                             </div>
-
-                            <div  className = 'form-group '>
-                                <label htmlFor='mainImage' >Main Image :</label>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text fa fa-file-image-o" id="mainImage"></span>
-                                    </div>
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="reviewmainImage" name = 'mainImage'
-                                           onChange ={this.handleImage} aria-describedby="mainImage"  />
-                                        <label className="custom-file-label" htmlFor="reviewmainImage">
-                                            { this.state.mainImage ===''  ? 'Choose Main image' : this.state.mainImage.name }</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div  className = 'form-group '>
-                                <label htmlFor='quantity' >Cart Image :</label>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text fa fa-file-image-o" id="inputGroupFileAddon01"></span>
-                                    </div>
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="reviewcartImage"  name ='cartImage'
-                                            aria-describedby="cartImage" onChange ={this.handleImage}   />
-                                        <label className="custom-file-label" htmlFor="reviewcartImage"   >
-                                        { this.state.cartImage ===''  ? 'Choose Cart image' : this.state.cartImage.name } </label>
-                                    </div>
-                                </div>
-                            </div>
-                       
+ 
                             
                             <div className = 'form-group'> 
                                 <input type= 'submit' id='submit' name ='submit' className ='btn btn-success w-25' 
-                                    value ='Add'  />
+                                    value ='UPDATE'  />
                             </div>
                         </form>  
                     </div>
@@ -211,14 +178,7 @@ class UpdateProduct extends React.Component{
                                 </div>
                                 :'' 
                         }
-                        {
-                            this.state.cartImage ? 
-                            <div className ='col-2  ml-1'>
-                                <h5>Cart Image Review</h5>
-                                <img src = {`${window.location.origin}/${this.state.cartImage}`}  alt=''/> 
-                            </div>
-                            :'' 
-                        }
+                        
                 </div>
 
             </div>

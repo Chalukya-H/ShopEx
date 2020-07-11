@@ -29,7 +29,9 @@ router.post('/products/topnew',productController.topList)
 router.post('/products',upload.any('filename'),productController.create)
 router.put('/products/quantity/update',productController.updateQuantity)
 router.get('/products/query/:id',productController.findByCategory)
+router.put('/products/update/:id',productController.update)
 router.get('/products/:id',productController.findProductByID)
+
 router.get('/products/search/:text',productController.filterByName)
 
 //Cart router

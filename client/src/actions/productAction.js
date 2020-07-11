@@ -111,11 +111,32 @@ export const getProductsbyQuery = (searchText)=>{
             }
         })
         .then(response =>{   
+            
             dispatch(addProductinfo(response.data))
-             
+            
         })
         .catch( err =>{
             console.log(err)
         })
+    }
+}
+
+
+export const updateProductinfo= (product) => {
+    return { type: 'EDIT_PRODUCT', payload: product}
+} 
+
+export const updateProduct = (formData, id , redirect) =>{
+    return(dispatch) =>{ 
+        axios.put(`/products/update/${id}`,formData )
+        .then(response =>{  
+            dispatch(updateProductinfo(response.data))
+            redirect()
+        })
+        .catch( err =>{
+            console.log(err)
+        })
+
+         
     }
 }

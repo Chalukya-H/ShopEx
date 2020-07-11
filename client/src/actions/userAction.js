@@ -19,14 +19,11 @@ export const stratLogin = (userData,redirect,refresh) =>{
                   })
              } else {
                  localStorage.setItem('token',response.data.token)
-                 swal({
-                    title: 'Login Successfull !',                    
-                    icon: "success",
-                    button :'OK' 
-                    
-                  })
-                                
-                 console.log('Token - ',localStorage.getItem('token'))
+                //  swal({
+                //     title: 'Login Successfull !',                    
+                //     icon: "success",
+                //     button :'OK'                     
+                //   }) 
 
                  axios.get('users/account',{headers :{
                      'auth':localStorage.getItem('token')
@@ -35,6 +32,12 @@ export const stratLogin = (userData,redirect,refresh) =>{
 
                  .then(response =>{
                      dispatch(setUserInfo(response.data))
+                     swal({
+                        title: 'Login Successfull !',                    
+                        icon: "success",
+                        button :'OK'                     
+                      }) 
+
                      redirect()
                      refresh()
                  })
@@ -42,6 +45,7 @@ export const stratLogin = (userData,redirect,refresh) =>{
                  .catch(err=>{
                      console.log(err)
                  })
+                  
 
              }
         })

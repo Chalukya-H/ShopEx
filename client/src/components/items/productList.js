@@ -54,8 +54,7 @@ class ProductsSummary extends React.Component {
                                         <td className ='align-self-center'>{product.name}</td>
                                         <td>{product.price}</td>
                                         <td>
-                                            { this.props.categories.map(category =>{
-                                                console.log(category._id)
+                                            { this.props.categories.map(category =>{                                                 
                                                     return ( category._id === product.categoryID ? category.mainType : '')
                                                 })
                                             }</td>

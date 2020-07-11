@@ -89,8 +89,7 @@ productController.updateQuantity =(req,res) =>{
     } else {
           formData = {   $inc: { quantity: -1} }
     }
-    
-    console.log('found pro',body.id)    
+       
     Product.findById({_id:body.id})
     .then(product =>{  
           
@@ -114,8 +113,8 @@ productController.updateQuantity =(req,res) =>{
 
 productController.filterByName =(req,res) =>{
     const textChar  =  req.params.text
-     
-    Product.find( {name:{  $regex: textChar } }  )
+      
+    Product.find( {name : { $regex: textChar, $options: 'i'}} )
         .then(product =>{
             console.log(product)
             res.json(product)
@@ -126,5 +125,20 @@ productController.filterByName =(req,res) =>{
         })
 }
 
+
+productController.update = (req,res) =>{
+    const body  = req.body 
+    const id =  req.params.id   
+    console.log(body,id) 
+    Product.findByIdAndUpdate({_id: id},body,{ new: true, runValidators: true })
+    .then(product =>{
+        console.log(product)
+        res.json(product)
+    })
+    .catch(err =>{
+        console.log(err)
+        res.json(err)
+    })
+}
 
 module.exports = productController

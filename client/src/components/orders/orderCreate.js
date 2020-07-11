@@ -1,5 +1,6 @@
 import React from 'react'
 import {getProducttoCart} from '../../actions/cartAction'
+import {addProductstoOrder} from '../../actions/cartAction'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format' 
 
@@ -73,7 +74,7 @@ class OrderCreate extends React.Component {
                 contactNum: this.state.contactNum
             }
         })
-        console.log(orders)
+        
         this.props.dispatch(addProductstoOrder(orders,refresh))
     }
     render(){

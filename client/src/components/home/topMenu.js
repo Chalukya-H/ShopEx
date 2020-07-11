@@ -37,7 +37,9 @@ class TopMenu extends React.Component{
           this.setState ({searchText : e.target.value})
       }
 
-     
+     handleSubmitSearch = (e) =>{
+        window.location.href = `/search/q=${this.state.searchText}`
+     }
 
     render() {
         return (
@@ -51,11 +53,12 @@ class TopMenu extends React.Component{
     
                     <div className="collapse navbar-collapse " id="navbarSupportedContent">     
                         <div className="input-group mt-2 w-75">
-                            <input className="form-control " type="text" placeholder="Search" aria-label="Search" value ={this.state.searchText}
+                            <input className="form-control " type="text" placeholder="Search by product name" aria-label="Search" value ={this.state.searchText}
                                 onChange = {this.handleSearch}/>
                             <div className="input-group-append">
-                            <Link to = {`/search/q=${this.state.searchText}`} className="btn btn-md btn-outline-warning "  >
-                                    Search</Link>
+                                <button className="btn btn-md btn-outline-warning " onClick = {this.handleSubmitSearch} > Search </button>
+                            {/* <Link to = {`/search/q=${this.state.searchText}`} className="btn btn-md btn-outline-warning "  >
+                                    Search </Link> */}
                             </div>
                         </div>
     

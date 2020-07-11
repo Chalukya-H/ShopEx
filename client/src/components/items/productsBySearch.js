@@ -12,22 +12,20 @@ class ProductSeachbyName extends React.Component {
             path : window.location.origin   
         }
     }
-    componentDidMount = ()=>{
-        
+    componentDidMount = ()=>{ 
         const text  = this.props.match.params.text.split('=')[1] 
         this.props.dispatch(getProductsbyQuery(text)) 
-
+         
         const refersh =  setInterval( () =>{            
-            if(this.props.products.length){
+            if(this.props.products.length ){
                 clearInterval(refersh)   
-                this.setState({products:this.props.products})
+                this.setState({ products:this.props.products})                
             }
         },1000)
  
     }
  
-    render() {
-         
+    render() { 
         return(         
             <div>
               {
