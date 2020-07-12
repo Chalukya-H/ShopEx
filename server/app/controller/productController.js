@@ -23,7 +23,7 @@ productController.create = (req,res) =>{
 
 productController.list = (req,res) =>{ 
     if(req.user.role === 'Admin'){
-        Product.find()
+        Product.find().sort()
         .then(product =>{
             res.json(product)
         })
@@ -56,6 +56,7 @@ productController.findByCategory = (req,res) =>{
     })
 
 }
+
 productController.findProductByID = (req,res) =>{
     const id =  req.params.id    
    Product.findById({_id:id,quantity : { $gt: 1 }})
@@ -70,7 +71,7 @@ productController.findProductByID = (req,res) =>{
 
 productController.topList = (req,res) =>{
     const body =  req.body    
-   Product.find({quantity : { $gt: 1 }}).limit(8)
+   Product.find({quantity : { $gt: 1 }}).sort({"_id": -1}).limit(8)
    .then(product =>{
        res.json(product)
    })
