@@ -22,6 +22,7 @@ router.put('/categories/update',categoryController.update)
 //Order Router
 router.get('/orders',authUser, orderController.list)
 router.post('/orders',authUser, orderController.create)
+router.get('/orders/list',authUser, orderController.listforCustomer)
 
 //Product Router
 router.get('/products',authUser,productController.list)

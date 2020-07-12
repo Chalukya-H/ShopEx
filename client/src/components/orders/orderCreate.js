@@ -1,6 +1,6 @@
 import React from 'react'
 import {getProducttoCart} from '../../actions/cartAction'
-import {addProductstoOrder} from '../../actions/cartAction'
+import {addProductstoOrder} from '../../actions/orderAction'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format' 
 
@@ -9,16 +9,16 @@ class OrderCreate extends React.Component {
         super()
         this.state={             
             path : window.location.origin ,
-            address: '',
-            contactNum:'',
-            readyToOrder : false,
+            address: '#35,2nd cross,Chunchugatta main road ,Harinagar Cross,bangalore -560062',
+            contactNum:'8095320791',
+            readyToOrder : true,
             price:0,
             tax:0
         }
     }
-    componentDidMount =()=>{
-
+    componentDidMount =()=>{ 
         this.props.dispatch(getProducttoCart()) 
+
         const refersh =  setInterval( () =>{  
             if(this.props.cartData.length ) {            
                 clearInterval(refersh) 
@@ -37,7 +37,6 @@ class OrderCreate extends React.Component {
     }
 
     handleChange = (e) =>{
-
         this.setState({
             [e.target.name] : e.target.value
         })
@@ -51,7 +50,6 @@ class OrderCreate extends React.Component {
     }
 
     handleInfoEdit = (e) =>{
-
         this.setState({
             readyToOrder : false
         })
@@ -69,7 +67,7 @@ class OrderCreate extends React.Component {
                 price : cart.price,
                 quantity:cart.quantity,
                 image: cart.image,
-                customerID: this.props.users._id,
+                customerID: this.props.users[0]._id,
                 address: this.state.address,
                 contactNum: this.state.contactNum
             }
@@ -78,7 +76,7 @@ class OrderCreate extends React.Component {
         this.props.dispatch(addProductstoOrder(orders,refresh))
     }
     render(){
-        
+        console.log(this.props.users)
         return (
             <div className ='container-fluid'>
                
@@ -144,7 +142,7 @@ class OrderCreate extends React.Component {
                                </div>
                               <div className ='row justify-content-between'>
                                    <h5 className="card-title float-left">TAX  </h5> 
-                                   <h5 className="card-title float-right">
+                                   <h5 className="card-title float-right ">
                                     <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
                                         displayType = 'text' prefix={'₹'} value={ this.state.tax}/>
                                     </h5>
@@ -153,7 +151,7 @@ class OrderCreate extends React.Component {
                            </div>
                            <div className="card-footer">                                
                                <h5 className="card-title float-left">TOTAL PRICE </h5> 
-                               <h5 className="card-title float-right">
+                               <h5 className="card-title float-right  ">
                                     <NumberFormat thousandSeparator={true} thousandsGroupStyle="lakh" className="card-title float-right"
                                         displayType = 'text' prefix={'₹'} value={ this.state.price + this.state.tax}/>
                                     </h5>

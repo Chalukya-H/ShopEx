@@ -19,12 +19,7 @@ export const stratLogin = (userData,redirect,refresh) =>{
                   })
              } else {
                  localStorage.setItem('token',response.data.token)
-                //  swal({
-                //     title: 'Login Successfull !',                    
-                //     icon: "success",
-                //     button :'OK'                     
-                //   }) 
-
+                  
                  axios.get('users/account',{headers :{
                      'auth':localStorage.getItem('token')
                     }
@@ -36,10 +31,12 @@ export const stratLogin = (userData,redirect,refresh) =>{
                         title: 'Login Successfull !',                    
                         icon: "success",
                         button :'OK'                     
+                      }).then( ()=>{
+                        redirect()
+                        refresh()
                       }) 
 
-                     redirect()
-                     refresh()
+                    
                  })
 
                  .catch(err=>{

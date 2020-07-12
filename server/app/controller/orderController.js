@@ -3,36 +3,9 @@ const orderController ={}
 
 orderController.create = (req,res) =>{
     const body = req.body
-    console.log('order body',body)
-    // Order.findOne({name:body.name})
-
-    // .then( order => {
-    //     if(order){
-    //         res.json({error:`Order ${order.name} alredy exists`})
-    //     }
-    //     else {
-            // const order =  new Order(body)
-            // order.customerID = req.user._id
-            // order.save()
-            // .then(order =>{
-            //     res.json(order)
-            // })
-            // .catch(err =>{
-            //     res.json(err)
-            // })
-        // }
-    // })
-   
-    // .catch(err =>{
-    //     res.json(err)
-    // })
-
-
-     
+      
     Order.insertMany(body)   
-    // order.customerID = req.user._id
-     
-    // order.save()
+    
     .then(order =>{
         console.log(order,'Response')
         res.json(order )
@@ -44,15 +17,35 @@ orderController.create = (req,res) =>{
 }
 
 orderController.list =(req,res) =>{
+    console.log(req.user)
+    if(req.user.role === 'Admin'){
+        Order.find()
+        .then( order =>{
+            res.json(order)
+        })
+    
+        .catch(err =>{
+            res.json(err)
+        })
+    } else {
+        res.json({
+            error: 'Accessable only by Admins'
+        })
+    }
+   
+}
 
-    Order.find()
-    .then( order =>{
+
+orderController.listforCustomer =(req,res) =>{      
+    Order.find({customerID : req.user._id })
+    .then(order =>{
         res.json(order)
     })
-
-    .catch(err =>{
+    .catch(err=>{
         res.json(err)
     })
 }
+
+
 
 module.exports = orderController

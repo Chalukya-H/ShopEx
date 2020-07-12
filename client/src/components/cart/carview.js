@@ -1,7 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format' 
 import {Link} from 'react-router-dom'
- import {getProducttoCart,deleteProducttoCart,updateCartQuantity,addProductstoOrder} from '../../actions/cartAction'
+ import {getProducttoCart,deleteProducttoCart,updateCartQuantity} from '../../actions/cartAction'
 import { connect } from 'react-redux'
 
 class Cart extends React.Component {

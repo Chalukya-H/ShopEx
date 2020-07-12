@@ -5,7 +5,7 @@ import logo from '../../media/Logo-1.PNG'
 import CategoryMenu from './categoryMenu'
 import {startGetUser} from '../../actions/userAction'
 import {getProductsbyQuery} from '../../actions/productAction'
-import Footer from './footer'
+ 
 import {connect} from 'react-redux'
 
 class TopMenu extends React.Component{
@@ -52,17 +52,16 @@ class TopMenu extends React.Component{
                     </button>
     
                     <div className="collapse navbar-collapse " id="navbarSupportedContent">     
-                        <div className="input-group mt-2 w-75">
+                        <div className="input-group mt-2 ml-5  w-50 ">
                             <input className="form-control " type="text" placeholder="Search by product name" aria-label="Search" value ={this.state.searchText}
                                 onChange = {this.handleSearch}/>
                             <div className="input-group-append">
                                 <button className="btn btn-md btn-outline-warning " onClick = {this.handleSubmitSearch} > Search </button>
-                            {/* <Link to = {`/search/q=${this.state.searchText}`} className="btn btn-md btn-outline-warning "  >
-                                    Search </Link> */}
+                         
                             </div>
                         </div>
     
-                        <ul className="navbar-nav  ml-3" >
+                        <ul className="navbar-nav  ml-5" >
                             {
                                 localStorage.getItem('token') ? 
                                     <div className ='navbar-nav '>                                      
@@ -83,20 +82,26 @@ class TopMenu extends React.Component{
                                                     </div>  
                                                                         
                                                 </div>
-                                            :                                             
-                                                <li className="nav-item active">
-                                                    <Link to ='/account' className ='nav-link navbar-brand ' >Account </Link>                                                    
-                                                </li>
-                                            
+                                            :   
+                                            <div className="dropdown ml-3 mr-2 ">
+                                                <button type="button" className="btn btn-primary  dropdown-toggle"
+                                                data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false">
+                                                    Account
+                                                </button>
+                                                <div className="dropdown-menu">
+                                                    <Link to ='/account' className ='dropdown-item' > Profile </Link>
+                                                    <Link to ='/orders/summary' className ='dropdown-item' > My Orders </Link>                                                                                                        
+                                                </div>  
+                                            </div>                                               
                                         }
                                         <li className="nav-item active">
-                                            <Link to ='/cart' className ='nav-link navbar-brand fa fa-shopping-cart'
-                                             style ={{display: this.state.role ==='Admin' ? 'none' : ''}} >  </Link>
+                                            <Link to ='/cart' className ='nav-link navbar-brand fa fa-shopping-cart ml-3'
+                                             style ={{display: this.state.role ==='Admin' ? 'none' : ''}} > Cart </Link>
                                         </li>
 
                                         <li className="nav-item active">
                                             <Link to ='#' onClick ={this.handleLogout} 
-                                                className ='nav-link navbar-brand fa fa-sign-out' >      </Link>
+                                                className ='nav-link navbar-brand fa fa-sign-out' > SignOut</Link>
                                         </li>
                                        
                                 </div>
