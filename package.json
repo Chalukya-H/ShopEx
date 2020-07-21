@@ -1,0 +1,37 @@
+{
+  "name": "ShopEx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "dev": "concurrently \"cd server && nodemon index.js\" \"cd client && npm start\""
+  },
+  "engines": {
+    "node": "^10.3.0",
+    "npm": "^6.8.0"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chalukya-H/ShopEx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chalukya-H/ShopEx/issues"
+  },
+  "homepage": "https://github.com/Chalukya-H/ShopEx#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
+    "validator": "^13.1.1"
+  }
+}
