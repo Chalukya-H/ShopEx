@@ -56,13 +56,13 @@ class ShowSingleProduct extends React.Component{
                                         alt="Image not found" style = {{ height:'300px',width:'80%',marginLeft: '6%',  marginRight: 'auto'}} />
                                     <br/>
                                     {
-                                        localStorage.getItem('token') ?
+                                        localStorage.getItem('token')  ?
                                          <div>
                                             <input type= 'submit' id='submit' name ='submit' className ='btn btn-warning w-100  ml-3' 
-                                                value ='ADD TO CART' onClick ={this.handleCartAdd} />  
+                                                value ='ADD TO CART' onClick ={this.handleCartAdd}  disabled = {this.props.users[0].role ==='Admin' ? true : false }/>  
                                             
                                           </div> 
-                                          :
+                                          :  
                                           <h4> Login or Register to order the product </h4>  
                                     }
                                    

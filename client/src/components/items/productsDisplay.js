@@ -52,7 +52,7 @@ class  ProductShowByCategory extends React.Component {
                                                         {
                                                             
                                                             product.description.split('--').map((text,i) =>{
-                                                                return   <li key ={i}>{text}</li>  
+                                                                return  text ? <li key ={i}>{text}</li>  : <br/>
                                                             })
                                                         }
                                                     </ul>

@@ -24,9 +24,9 @@ function Footer () {
                   <li>
                     <i className='fas fa-envelope' style={{fontSize:'18px'}}> Chalukya001@gmail.com</i>
                   </li>
-                  <li>
+                  {/* <li>
                     <i className='fas fa-address-book' style={{fontSize:'18px'}}> +91 8095320791</i>
-                  </li>
+                  </li> */}
                   <li>
                     <span className = 'fa fa-git-square'  style={{fontSize:'20px'}}>  </span> 
                     <a href="https://github.com/Chalukya-H" target="_blank"  className = 'text-primary bg-dark'

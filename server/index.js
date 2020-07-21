@@ -3,18 +3,16 @@ const app = express()
 const configDB = require('./config/database')
 const router = require('./config/router')
 const path = require('path')
+const cors = require('cors')
 const port =3030
 
 app.use(express.json())
+app.use(cors())
+
 configDB()
 
 app.use('/',router)
  
-// app.use(function(req,res,next){
-//     console.log(`${req.method} - ${req.url} - ${new Date()} - ${JSON.stringify(req.body)}`)
-//     next()
-// })
-
 //File Upload
 app.use("/upload", express.static("upload"));
 app.use(express.static(path.join(__dirname, "client/build")))

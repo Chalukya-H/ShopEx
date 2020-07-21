@@ -20,7 +20,7 @@ store.subscribe( () =>{
 if(localStorage.getItem('token')) {
   store.dispatch(startGetUser())
   store.dispatch(getCategories())
-  store.dispatch(getProducts())
+  // store.dispatch(getProducts())
 }
 
 const ele = (
