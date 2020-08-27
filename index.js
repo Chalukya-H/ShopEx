@@ -15,6 +15,7 @@ app.use('/api',router) // Updated for Heroku
  
 //File Upload
 app.use("/upload", express.static("upload"));
+
 app.use(express.static(path.join(__dirname, "client/build")))
 app.get("*", (req, res) => { 
 	res.sendFile(path.join(__dirname + "/client/build/index.html"));

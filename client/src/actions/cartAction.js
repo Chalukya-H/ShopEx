@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axios'
 
 export const addCartInfo = (cart) =>{
     return {type: 'CREATE_CART' ,  payload:cart}

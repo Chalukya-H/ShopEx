@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-mongoose.Promise = global.Promise
 // const configDB = () =>{
 //     mongoose.connect('mongodb://localhost:27017/shopex-db' ,{
 //             useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex:true })
@@ -15,6 +14,7 @@ mongoose.Promise = global.Promise
 
 
 // Updated for Heroku
+mongoose.Promise = global.Promise
 
 const CONNECTION_URI =  process.env.MONGODB_URI || "mongodb://localhost:27017/shopex-db"
     mongoose.connect(CONNECTION_URI ,{
